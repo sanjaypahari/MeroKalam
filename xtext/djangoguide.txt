@@ -1,0 +1,89 @@
+# app urls and project urls concept
+# https 
+from . import views
+from django.http import HttpResponse
+
+# Create your views here.
+
+
+def home(request):
+    return HttpResponse('<h1>Blog Home</h1>')
+
+
+###########################
+
+
+# templetes
+- blog -> templetes -> blog -> html file
+
+- view ma function and html file name incluuding-> urls.py ma url create - html file update
+
+##########################################
+
+# bootstrap templetes ; static ma css file rakhne 
+with folder name static and inside blog and inside css file 
+
+# to extend {% load static %}
+
+#########################################
+
+# Admin Page 
+
+to go to admin page we we to do python manage.py makemigration or migrate
+
+
+# then create superuser for admin page 
+
+python manage.py createsuperuser
+
+
+############################
+
+# ORM - Object-relational mapping
+Object-relational mapping (ORM) is a way to align programming code with database structures. ORM uses metadata descriptors to create a layer between the programming language and a relational database.
+
+
+# python manage.py makemigration 
+# python manage.py migrate - to update change
+
+
+# User.objects.all()
+# User.objects.filter()
+
+
+
+>>> from blog.models import Post
+>>> from django.contrib.auth.models import User
+>>> User.objects.all()
+<QuerySet [<User: sanjay>, <User: santa>]>
+>>> User.objects.filter(username='sanjay') 
+<QuerySet [<User: sanjay>]>
+>>>
+>>> User.objects.filter(username='sanjay').first()
+<User: sanjay>
+>>> user = User.objects.filter(username='sanjay').first() 
+>>> user
+<User: sanjay>
+>>> user.id
+1
+>>> user.pk
+1
+>>> user = User.objects.get(id =1) 
+>>> user
+<User: sanjay>
+>>> Post.objects.all() 
+<QuerySet []>
+
+
+>>> post_1 = Post(title='Blog1', content= 'First Post Content!',author=user)  
+
+
+>>> Post.objects.all()
+<QuerySet []>
+>>> post_1.save()
+>>> Post.objects.all()
+<QuerySet [<Post: Post object (1)>]>
+>>> exit()
+
+>>> post_2 = Post(title = 'Blog post 2',content = 'Seconf Post Content!', author_id=user.id ) 
+>>> post_2.save()

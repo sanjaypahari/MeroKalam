@@ -1,0 +1,91 @@
+# db
+
+>>> post = Post.objects.first()
+>>> post
+<Post: Blog1>
+>>> post.content
+'First Post Content!'
+>>>
+
+>>> user.post_set.create(title="Blog 3",content='Third post')  
+<Post: Blog 3>
+>>> Post.objects.all()
+<QuerySet [<Post: Blog1>, <Post: Blog post 2>, <Post: Blog 3>]>
+
+######
+
+from .models import Post
+# Register your models here.
+
+
+admin.site.register(Post)
+
+
+
+###############################
+
+# to create user registration
+
+- Create new app and config in setting 
+
+
+###################################
+
+after creation app;
+
+- insert templetes
+- already inlcude form, user import 
+
+
+
+###################
+
+# for login and logout import from django , login_required kind of 
+
+
+
+##############
+
+Usr profile 
+
+# @login_required
+def profile(request):
+    return render(request,"users/profile.html")
+
+#from django.contrib.auth.models import User
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image =  models.ImageField(default="default.jpg",upload_to='profile_pics')
+    
+    def __str__(self):
+        return f'{self.user.username} Profile'
+    
+    
+    ########################
+
+    PP 
+ # in setting.py 
+ 
+    MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
+        
+###########################
+
+
+from django.db.models.signals import post_save
+from django.contrib.auth.models import User
+from django.dispatch import receiver
+from .models import Profile
+
+
+@receiver(post_save, sender=User)
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def save_profile(sender, instance, **kwargs):
+    instance.profile.save()
