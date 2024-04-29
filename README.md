@@ -2,12 +2,20 @@
 
 Welcome to MeroKalam - A blog site where users can write and share articles and blogs. This repository contains the source code for the backend of the website built using Django framework.
 
+This is an open-source project. Feel free to contribute.
+
 ## Features
 
 - User-friendly article creation, modification, and deletion.
 - User authentication system with login, registration, and password reset functionalities.
 - Responsive and intuitive user interface.
 - Efficient routing and interaction with the backend using Django's powerful features... more to add
+
+## Previews
+
+https://github.com/sannux6/test/assets/107178884/779d700f-3199-4548-8ce1-897ccabe9f1f
+
+https://github.com/sannux6/MeroKalam/assets/107178884/8b803a9e-0afa-413c-84a7-dbd5e2cb7265
 
 ## Technologies Used
 
@@ -49,9 +57,6 @@ python manage.py runserver
 ```
 
 7. Access the website at `http://localhost:8000` in your web browser.
-
-## Screenshots
-
 
 ## Usage
 
